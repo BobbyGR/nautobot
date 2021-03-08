@@ -95,13 +95,21 @@ These will create the user with the specified username, email, password, and API
 
 After these two files are created, you can use the normal **invoke** commands to manage the development containers.
 
+### Docker Development - Microsoft Visual Studio Code
+
+The `devcontainer.json` and `nautobot.code-workspace` files are provided to ease development when using VS Code and the Remote-Containers extension. After opening the project directory in VS Code in a
+supported environment, you will be prompted by VS Code to "Reopen in Container" and "Open Workspace". Select "Reopen in Container" to build and start the dev containers. Once your window is
+connected to the container, you can open the workspace which enables support for Run/Debug.
+
+To start Nautobot, select "Run Without Debugging" or "Start Debugging" from the Run menu. Once Nautobot has started, you will be prompted to open a browser to connect to Nautobot.
+
 ### Python Virtual Environment Workflow
 
 There are a few things you'll need:
 
 - A Linux system or environment
-- A PostgreSQL server, which can be installed locally [per the documentation](/installation/1-postgresql/)
-- A Redis server, which can also be [installed locally](/installation/2-redis/)
+- A PostgreSQL server, which can be installed locally [per the documentation](/installation/#install-nautobot)
+- A Redis server, which can also be [installed locally](/installation/#install-nautobot)
 - A supported version of Python
 - A recent version of [Poetry](https://python-poetry.org/docs/#installation)
 
@@ -123,7 +131,7 @@ A [virtual environment](https://docs.python.org/3/tutorial/venv.html) is like a 
 
 For Nautobot development, we have selected Poetry, which will transparently create a virtualenv for you, automatically install all dependencies required for Nautobot to operate, and will also install the `nautobot-server` CLI command that you will utilize to interact with Nautobot from here on out.
 
-Bootstrap your virtual environment using `poetry install`. 
+Bootstrap your virtual environment using `poetry install`.
 
 ```bash
 $ poetry install
@@ -191,8 +199,8 @@ The newly created configuration includes sane defaults. If you need to customize
 * `ALLOWED_HOSTS`: This can be set to `['*']` for development purposes and must be set if `DEBUG=False`
 * `DATABASES`: PostgreSQL database connection parameters, if different from the defaults
 * `REDIS`: Redis configuration, if different from the defaults
-* `DEBUG`: Set to `True` to enable verbose exception logging and the [Django debug toolbar](https://django-debug-toolbar.readthedocs.io/en/latest/)
-* `EXTRA_INSTALLLED_APPS`: Optionally provide a list of extra Django apps/plugins you may desire to use for development
+* `DEBUG`: Set to `True` to enable verbose exception logging and, if installed, the [Django debug toolbar](https://django-debug-toolbar.readthedocs.io/en/latest/)
+* `EXTRA_INSTALLED_APPS`: Optionally provide a list of extra Django apps/plugins you may desire to use for development
 
 #### Starting the Development Server
 
